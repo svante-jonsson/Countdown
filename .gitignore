@@ -104,4 +104,4 @@ dist
 .tern-port
 
 # Compiled TailwindCSS
-./server/client/css/tailwind.css
+client/css/*tailwind.css*
