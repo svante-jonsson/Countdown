@@ -1,4 +1,7 @@
+//IMPORTED DEPENDENCIES
 const express = require('express')
+
+//VARIABLE INITIALIZE
 const app = express()
 const port = 3000
 
@@ -9,6 +12,7 @@ app.set("view engine", "ejs");
 app.use(express.urlencoded({ extended: false }));
 app.use(express.static(__dirname + "/client/"));
 
+//GET
 app.get("/", async (req, res) => {
     res.render("pages/index", {Hello: "TJO"});
   });
