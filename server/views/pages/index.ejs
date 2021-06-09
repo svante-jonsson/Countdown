@@ -42,11 +42,6 @@
                 today.getMinutes(),
                 today.getSeconds(),
             ];
-            let currentDate = [
-                today.getFullYear(),
-                today.getMonth() + 1,
-                today.getDate(),
-            ];
 
             let hoursLeft = inputtedTime[0] - currentTime[0];
             let minutesLeft = inputtedTime[1] - currentTime[1];
@@ -66,5 +61,28 @@
         setInterval(function () {
             updateTime();
         }, 1000);
+
+        //Returns true if the user inputted time is later than the current time
+        function sameDay(userHour, userMinute) {
+            let currentTime = new Date();
+            let currentHour = currentTime.getHours;
+            let currentMinute = currentTime.getMinutes;
+
+            let hoursLeft = userHour > currentHour;
+            let minutesLeft = userMinute > currentMinute;
+
+            if (hoursLeft) {
+                //If the user hour is greater than the current hour, it will be assumed that it is the same day
+                return true;
+            } else {
+                if (userHour == currentHour && minutesLeft) {
+                    //If the user hour is equal to the current hour, as well as, the user minute is greater than the current minute, it will be assumed that it is the same day
+                    return true;
+                } else {
+                    //If none of the condistions are met, it will be assumed that it is not the same day
+                    return false;
+                }
+            }
+        }
     </script>
 </html>
