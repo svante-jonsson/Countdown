@@ -10,9 +10,17 @@
     <body>
         <main class="h-screen w-screen flex items-center justify-center">
             <h1 class="text-8xl">120 : 06 : 20 : 55</h1>
+            <form action="">
+                <input type="text" pattern="([01]?[0-9]|2[0-3]):[0-5][0-9]" placeholder="HH:MM"/>
+                <button type="submit">Okej</button>
+            </form>
         </main>
     </body>
     <script>
+        //är tiden giltlig
+        //är tiden idag
+        //vad timern ska börja på bestäms
+        //nedräkningen börjar
         let inputtedTime = ["15", "5", "30"];
 
         function setInitalTime(index, left) {
