@@ -71,21 +71,25 @@
             updateTime();
         }, 1000);*/
 
-        let currentTime = new Date();
-        let currentHour = currentTime.getHours;
-        let currentMinute = currentTime.getMinutes;
+        let userHour = parseInt("23")
+        let userMinute = parseInt("00")
 
-        if (!validTime("23", "55")) {
+        let currentTime = new Date(); 
+        let currentHour = currentTime.getHours();
+        let currentMinute = currentTime.getMinutes();
+
+        if (!validTime(userHour, userMinute)) {
             throw new Error("Invalid request");
         }
         
-        let endsToday = sameDay("23", "55")
+        let endsToday = sameDay(userHour, userMinute, currentHour, currentMinute)
+
+        let time = setTime(userHour, userMinute, endsToday, currentHour, currentMinute)
+        console.log(time)
+        initializeCountdown(time.hour, time.minute)
 
         //If the user time is outside the 24-hour clock (military time) it is deemed invalid
         function validTime(userHour, userMinute) {
-            userHour = parseInt(userHour)
-            userMinute = parseInt(userMinute)
-
             if (userHour > 23 || userHour < 0) {
                 return false;
             }
