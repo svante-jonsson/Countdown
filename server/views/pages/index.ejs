@@ -71,6 +71,10 @@
             updateTime();
         }, 1000);*/
 
+        let currentTime = new Date();
+        let currentHour = currentTime.getHours;
+        let currentMinute = currentTime.getMinutes;
+
         if (!validTime("23", "55")) {
             throw new Error("Invalid request");
         }
@@ -92,11 +96,7 @@
         }
 
         //Returns true if the user inputted time is later than the current time
-        function sameDay(userHour, userMinute) {
-            let currentTime = new Date();
-            let currentHour = currentTime.getHours;
-            let currentMinute = currentTime.getMinutes;
-
+        function sameDay(userHour, userMinute, currentHour, currentMinute) {
             let hoursLeft = userHour > currentHour;
             let minutesLeft = userMinute > currentMinute;
 
@@ -110,6 +110,22 @@
                 } else {
                     //If none of the condistions are met, it will be assumed that it is not the same day
                     return false;
+                }
+            }
+        }
+
+        function setTime(userHour, userMinute, endsToday, currentHour, currentMinute) {
+            if (endsToday) {
+                return {
+                    hour: (userHour - currentHour),
+                    minute: (userMinute - currentMinute)
+                }
+            } else {
+                let timeTillZero = (-1*(24 - currentHour))
+                userHour = (userHour + timeTillZero)
+                return {
+                    hour: userHour,
+                    minute: (userMinute - currentMinute)
                 }
             }
         }
