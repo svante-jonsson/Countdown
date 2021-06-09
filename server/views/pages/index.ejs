@@ -119,17 +119,22 @@
         }
 
         function setTime(userHour, userMinute, endsToday, currentHour, currentMinute) {
+            let minute = userMinute - currentMinute
+            if(minute < 0){
+                userHour --
+                userMinute = 60 + minute
+            }
             if (endsToday) {
                 return {
                     hour: (userHour - currentHour),
-                    minute: (userMinute - currentMinute)
+                    minute: userMinute
                 }
             } else {
                 let timeTillZero = (-1*(24 - currentHour))
                 userHour = (userHour + timeTillZero)
                 return {
                     hour: userHour,
-                    minute: (userMinute - currentMinute)
+                    minute: userMinute
                 }
             }
         }
