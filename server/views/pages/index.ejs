@@ -21,6 +21,7 @@
         //är tiden idag
         //vad timern ska börja på bestäms
         //nedräkningen börjar
+        /*
         let inputtedTime = ["15", "5", "30"];
 
         function setInitalTime(index, left) {
@@ -68,10 +69,19 @@
 
         setInterval(function () {
             updateTime();
-        }, 1000);
+        }, 1000);*/
+
+        if (!validTime("23", "55")) {
+            throw new Error("Invalid request");
+        }
+        
+        let endsToday = sameDay("23", "55")
 
         //If the user time is outside the 24-hour clock (military time) it is deemed invalid
         function validTime(userHour, userMinute) {
+            userHour = parseInt(userHour)
+            userMinute = parseInt(userMinute)
+
             if (userHour > 23 || userHour < 0) {
                 return false;
             }
