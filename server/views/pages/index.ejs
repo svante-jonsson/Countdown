@@ -70,6 +70,17 @@
             updateTime();
         }, 1000);
 
+        //If the user time is outside the 24-hour clock (military time) it is deemed invalid
+        function validTime(userHour, userMinute) {
+            if (userHour > 23 || userHour < 0) {
+                return false;
+            }
+            if (userMinute > 59 || userMinute < 0) {
+                return false;
+            }
+            return true;
+        }
+
         //Returns true if the user inputted time is later than the current time
         function sameDay(userHour, userMinute) {
             let currentTime = new Date();
