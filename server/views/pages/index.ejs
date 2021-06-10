@@ -19,8 +19,8 @@
     <script>
         var now = new Date();
         var absolute = new Date();
-        var hour = 10
-        var minute = 55
+        var hour = 13
+        var minute = 03
 
         validTime(hour, minute) //Throws error if input time is invalid
 
@@ -28,10 +28,10 @@
             absolute.setDate(now.getDate() + 1) //Date sets to the next day
         }
 
-        absolute.setHours(hour, minute) //The chosen time is set
+        absolute.setHours(hour, minute, 0) //The chosen time is set
 
-        console.log(now)
-        console.log(absolute)
+        setInterval(function(){ console.log(timeLeft(now, absolute)) }, 100);
+        
 
         //kolla valid tid
         //kolla om samma dag, om tiden redan har varit idag kommer den alltså ske imorgon
@@ -55,6 +55,39 @@
                 return true;
             }
             return false; //Returns false if the input time on this date has yet to happen
+        }
+
+        function timeLeft(now, absolute) {
+            now = new Date();
+            var hoursLeft;
+            var minutesLeft;
+            var secondsLeft;
+
+            if (now.getDate() == absolute.getDate()) { //If the dates are same, the time left is set accordingly 
+                hoursLeft = (absolute.getHours() - now.getHours())
+                minutesLeft = (absolute.getMinutes() - now.getMinutes())
+                secondsLeft = (absolute.getSeconds() - now.getSeconds())
+            } else {
+                hoursLeft = (absolute.getHours() + (24 - now.getHours())) //If the dates do not match, the time left till the clocks resets is added
+                minutesLeft = (absolute.getMinutes() - now.getMinutes())
+                secondsLeft = (absolute.getSeconds() - now.getSeconds())
+            }
+
+            if (minutesLeft < 0) { //If the difference is negative one hour is moved from the hour part to the minutes part
+                hoursLeft --
+                minutesLeft += 59
+            }
+
+            if (secondsLeft < 0) { //If the difference is negative one minute is moved from the minute part to the seconds part
+                minutesLeft --
+                secondsLeft += 59
+            }
+            
+            return {
+                hours: hoursLeft,
+                minutes: minutesLeft,
+                seconds: secondsLeft
+            }
         }
     </script>
 </html>
