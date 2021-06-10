@@ -33,18 +33,23 @@
                 absolute.setDate(absolute.getDate() + 1)
             }
 
-            var counter = setInterval(function(){countdown(now, absolute)}, 1000);
+            countdown(now, absolute)
+
             return false;
         }
 
         function countdown(now, absolute) {
-            var timeLeft = timeDifference(now, absolute) //Time left in milliseconds
-            timeLeft = calculateTime(timeLeft) //Time left in HH:MM:SS
-            displayTime(timeLeft) //Time is displayed
+            var counter = setInterval(function() {
+                var msLeft = timeDifference(now, absolute) //Time left in milliseconds
+                console.log(msLeft)
+                var timeLeft = calculateTime(msLeft) //Time left in HH:MM:SS
+                displayTime(timeLeft) //Time is displayed
 
-            if (timeLeft.hours == 0 && timeLeft.minutes == 0 && timeLeft.seconds == 0) { //If the time reaches zero, the counter stops
-                clearInterval(counter)
-            }
+                if (msLeft < 1000) { //If the time reaches zero, the counter stops
+                    clearInterval(counter);
+                    return false;
+                }
+            }, 1000)
         }
         
         function validTime(hour, minute) {
