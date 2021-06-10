@@ -23,9 +23,8 @@
         var absolute = new Date();
         absolute.setHours(hour, minute)
         console.log(absolute)
-        timeLeft(now, absolute)
 
-        function timeLeft(now, absolute) {
+        function timeDifference (now, absolute) {
             now = new Date().getTime()
             absolute = absolute.getTime()
             return (absolute - now); //Time left in milliseconds is returned
