@@ -17,6 +17,10 @@
         </main>
     </body>
     <script>
+        if (!validTime(23, 55)) {
+            throw new Error("Invalid request");
+        }
+        
         var now = new Date();
         //sparas i localStorage
         var absolute = new Date();
