@@ -20,7 +20,6 @@
         var hour = 12
         var minute = 58
         var second = 0
-        var timeLeft;
         
         validTime(hour, minute) //If the input time is not valid, an error is thrown
 
@@ -34,15 +33,17 @@
 
         
 
-        var counter = setInterval(function(){ 
-            timeLeft = timeDifference(now, absolute) //Time left in milliseconds
+        var counter = setInterval(function(){countdown(now, absolute)}, 1000);
+
+        function countdown(now, absolute) {
+            var timeLeft = timeDifference(now, absolute) //Time left in milliseconds
             timeLeft = calculateTime(timeLeft) //Time left in HH:MM:SS
             displayTime(timeLeft) //Time is displayed
 
             if (timeLeft.hours == 0 && timeLeft.minutes == 0 && timeLeft.seconds == 0) { //If the time reaches zero, the counter stops
                 clearInterval(counter)
             }
-        }, 1000);
+        }
 
         
         function validTime(hour, minute) {
