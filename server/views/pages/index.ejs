@@ -26,5 +26,15 @@
         //kolla om samma dag, om tiden redan har varit idag kommer den alltså ske imorgon
         //ta reda på hur långt det är kvar, sluttid - nutid
         //visa up tiden som är kvar (differansen)
+
+        function validTime(hour, minute) {
+            if (hour < 0 || hour > 23) { //If the input hour is outside the 24-hour clock, it is invalid
+                return false;
+            }
+            if (minute < 0 || minute > 59) { //If the input minute is outside the 60 minute hour, it is invalid
+                return false;
+            }
+            return true; //Returns true if both the input hour and minute is valid
+        }
     </script>
 </html>
