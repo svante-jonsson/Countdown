@@ -17,14 +17,17 @@
         </main>
     </body>
     <script>
-        if (!validTime(23, 55)) {
+        var hour = 23
+        var minute = 55
+
+        if (!validTime(hour, minute)) {
             throw new Error("Invalid request");
         }
-        
+
         var now = new Date();
         //sparas i localStorage
         var absolute = new Date();
-        absolute.setHours(23, 55)
+        absolute.setHours(hour, minute)
 
         //kolla valid tid
         //kolla om samma dag, om tiden redan har varit idag kommer den alltså ske imorgon
