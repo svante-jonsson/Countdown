@@ -28,7 +28,15 @@
         function timeLeft(now, absolute) {
             now = new Date().getTime()
             absolute = absolute.getTime()
-            return (absolute - now);
+            return (absolute - now); //Time left in milliseconds is returned
+        }
+
+        function calculateTime(msLeft) {
+            return { //The calculations from milliseconds to h, m and s can be found here: https://stackoverflow.com/a/10874133
+                hours: Math.floor(((msLeft / (1000*60*60)) % 24)),
+                minutes: Math.floor(((milliseconds / (1000*60)) % 60)),
+                seconds: Math.floor(((milliseconds / 1000) % 60))
+            }
         }
     </script>
 </html>
