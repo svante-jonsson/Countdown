@@ -10,18 +10,17 @@
     <body>
         <main class="h-screen w-screen flex items-center justify-center">
             <h1 class="text-8xl">120 : 06 : 20 : 55</h1>
-            <form action="">
-                <input type="text" pattern="([01]?[0-9]|2[0-3]):[0-5][0-9]" placeholder="HH:MM"/>
-                <button type="submit">Okej</button>
+            <form onsubmit="return initCountdown()">
+                <input type="text" pattern="([01]?[0-9]|2[0-3]):[0-5][0-9]" placeholder="HH:MM" id="userTime" autofocus/>
+                <button type="submit" >Okej</button>
             </form>
         </main>
     </body>
     <script>
-        initCountdown()
-
         function initCountdown() {
-            var hour = 12
-            var minute = 58
+            var time = document.getElementById("userTime").value
+            var hour = time.substring(0, 2);
+            var minute = time.substring(3, 5);
             var second = 0
             
             validTime(hour, minute) //If the input time is not valid, an error is thrown
@@ -35,6 +34,7 @@
             }
 
             var counter = setInterval(function(){countdown(now, absolute)}, 1000);
+            return false;
         }
 
         function countdown(now, absolute) {
