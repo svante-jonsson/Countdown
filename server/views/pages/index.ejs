@@ -17,13 +17,17 @@
         </main>
     </body>
     <script>
-        var timeLeft;
         var hour = 12
         var minute = 58
         var second = 0
+        
+        validTime(hour, minute)
+
         var now = new Date();
         var absolute = new Date();
         absolute.setHours(hour, minute, second)
+        var timeLeft;
+
         
         var counter = setInterval(function(){ 
             timeLeft = timeDifference(now, absolute) //Time left in milliseconds
@@ -36,6 +40,15 @@
         }, 1000);
 
         
+        function validTime(hour, minute) {
+            var invalidTime = new Error("Invalid request");
+            if (hour < 0 || hour > 23) { //If the input hour is outside the 24-hour clock, it is invalid
+                throw invalidTime
+            }
+            if (minute < 0 || minute > 59) { //If the input minute is outside the 60 minute hour, it is invalid
+                throw invalidTime
+            }
+        }
 
         function timeDifference(now, absolute) {
             now = new Date().getTime()
