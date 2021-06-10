@@ -17,23 +17,25 @@
         </main>
     </body>
     <script>
-        var hour = 12
-        var minute = 58
-        var second = 0
-        
-        validTime(hour, minute) //If the input time is not valid, an error is thrown
+        initCountdown()
 
-        var now = new Date();
-        var absolute = new Date();
-        absolute.setHours(hour, minute, second)
+        function initCountdown() {
+            var hour = 12
+            var minute = 58
+            var second = 0
+            
+            validTime(hour, minute) //If the input time is not valid, an error is thrown
 
-        if (hasHappened(now, hour, minute)) {
-            absolute.setDate(absolute.getDate() + 1)
+            var now = new Date();
+            var absolute = new Date();
+            absolute.setHours(hour, minute, second)
+
+            if (hasHappened(now, hour, minute)) {
+                absolute.setDate(absolute.getDate() + 1)
+            }
+
+            var counter = setInterval(function(){countdown(now, absolute)}, 1000);
         }
-
-        
-
-        var counter = setInterval(function(){countdown(now, absolute)}, 1000);
 
         function countdown(now, absolute) {
             var timeLeft = timeDifference(now, absolute) //Time left in milliseconds
@@ -44,7 +46,6 @@
                 clearInterval(counter)
             }
         }
-
         
         function validTime(hour, minute) {
             var invalidTime = new Error("Invalid request");
