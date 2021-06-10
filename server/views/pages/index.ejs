@@ -43,5 +43,14 @@
             }
             return true; //Returns true if both the input hour and minute is valid
         }
+
+        function hasHappened(now, hour, minute) {
+            if (now.getHours() > hour) { //If the current hour is greated than the input hour, it has already happened
+                return true;
+            } else if (now.getHours() == hour && now.getMinutes() > minute) { //If the current hour match the inpput hour, the minutes are checked and if the current minute is greated than the input minute, it has already happened
+                return true;
+            }
+            return false; //Returns false if the input time on this date has yet to happen
+        }
     </script>
 </html>
