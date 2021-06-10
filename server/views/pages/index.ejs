@@ -17,17 +17,21 @@
         </main>
     </body>
     <script>
-        var hour = 23
+        var now = new Date();
+        var absolute = new Date();
+        var hour = 10
         var minute = 55
 
-        if (!validTime(hour, minute)) {
-            throw new Error("Invalid request");
+        validTime(hour, minute) //Throws error if input time is invalid
+
+        if (hasHappened(now, hour, minute)) {
+            absolute.setDate(now.getDate() + 1) //Date sets to the next day
         }
 
-        var now = new Date();
-        //sparas i localStorage
-        var absolute = new Date();
-        absolute.setHours(hour, minute)
+        absolute.setHours(hour, minute) //The chosen time is set
+
+        console.log(now)
+        console.log(absolute)
 
         //kolla valid tid
         //kolla om samma dag, om tiden redan har varit idag kommer den alltså ske imorgon
@@ -35,13 +39,13 @@
         //visa up tiden som är kvar (differansen)
 
         function validTime(hour, minute) {
+            var invalidTime = new Error("Invalid request");
             if (hour < 0 || hour > 23) { //If the input hour is outside the 24-hour clock, it is invalid
-                return false;
+                throw invalidTime
             }
             if (minute < 0 || minute > 59) { //If the input minute is outside the 60 minute hour, it is invalid
-                return false;
+                throw invalidTime
             }
-            return true; //Returns true if both the input hour and minute is valid
         }
 
         function hasHappened(now, hour, minute) {
