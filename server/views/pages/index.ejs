@@ -18,15 +18,24 @@
     </body>
     <script>
         var timeLeft;
-        var hour = 15
-        var minute = 55
+        var hour = 12
+        var minute = 58
+        var second = 0
         var now = new Date();
         var absolute = new Date();
-        absolute.setHours(hour, minute)
-        console.log(absolute)
-        timeLeft = timeDifference(now, absolute) //Time left in milliseconds
-        timeLeft = calculateTime(timeLeft) //Time left in HH:MM:SS
-        displayTime(timeLeft)
+        absolute.setHours(hour, minute, second)
+        
+        var counter = setInterval(function(){ 
+            timeLeft = timeDifference(now, absolute) //Time left in milliseconds
+            timeLeft = calculateTime(timeLeft) //Time left in HH:MM:SS
+            displayTime(timeLeft) //Time is displayed
+
+            if (timeLeft.hours == 0 && timeLeft.minutes == 0 && timeLeft.seconds == 0) { //If the time reaches zero, the counter stops
+                clearInterval(counter)
+            }
+        }, 1000);
+
+        
 
         function timeDifference(now, absolute) {
             now = new Date().getTime()
@@ -43,7 +52,7 @@
         }
 
         function displayTime(timeLeft) {
-            console.log(`Hours: ${timeLeft.hours} \nMinutes: ${timeLeft.minutes}\nSeconds: ${timeLeft.seconds}\n`)
+            console.log(`Hours: ${timeLeft.hours} \nMinutes: ${timeLeft.minutes}\nSeconds: ${timeLeft.seconds}`)
         }
     </script>
 </html>
