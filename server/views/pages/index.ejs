@@ -20,15 +20,20 @@
         var hour = 12
         var minute = 58
         var second = 0
+        var timeLeft;
         
-        validTime(hour, minute)
+        validTime(hour, minute) //If the input time is not valid, an error is thrown
 
         var now = new Date();
         var absolute = new Date();
         absolute.setHours(hour, minute, second)
-        var timeLeft;
+
+        if (hasHappened(now, hour, minute)) {
+            absolute.setDate(absolute.getDate() + 1)
+        }
 
         
+
         var counter = setInterval(function(){ 
             timeLeft = timeDifference(now, absolute) //Time left in milliseconds
             timeLeft = calculateTime(timeLeft) //Time left in HH:MM:SS
@@ -48,6 +53,15 @@
             if (minute < 0 || minute > 59) { //If the input minute is outside the 60 minute hour, it is invalid
                 throw invalidTime
             }
+        }
+
+        function hasHappened(now, hour, minute) {
+            if (now.getHours() > hour) { //If the current hour is greated than the input hour, it has already happened
+                return true;
+            } else if (now.getHours() == hour && now.getMinutes() > minute) { //If the current hour match the inpput hour, the minutes are checked and if the current minute is greated than the input minute, it has already happened
+                return true;
+            }
+            return false; //Returns false if the input time on this date has yet to happen
         }
 
         function timeDifference(now, absolute) {
