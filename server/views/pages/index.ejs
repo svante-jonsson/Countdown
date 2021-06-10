@@ -17,21 +17,24 @@
         </main>
     </body>
     <script>
+        var timeLeft;
         var hour = 15
         var minute = 55
         var now = new Date();
         var absolute = new Date();
         absolute.setHours(hour, minute)
         console.log(absolute)
+        timeLeft = timeDifference(now, absolute) //Time left in milliseconds
+        timeLeft = calculateTime(timeLeft) //Time left in HH:MM:SS
 
-        function timeDifference (now, absolute) {
+        function timeDifference(now, absolute) {
             now = new Date().getTime()
             absolute = absolute.getTime()
             return (absolute - now); //Time left in milliseconds is returned
         }
 
         function calculateTime(msLeft) {
-            return { //The calculations from milliseconds to h, m and s can be found here: https://stackoverflow.com/a/10874133
+            return { //The calculations from milliseconds to HH:MM:SS can be found here: https://stackoverflow.com/a/10874133
                 hours: Math.floor(((msLeft / (1000*60*60)) % 24)),
                 minutes: Math.floor(((msLeft / (1000*60)) % 60)),
                 seconds: Math.floor(((msLeft / 1000) % 60))
