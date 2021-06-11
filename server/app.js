@@ -14,7 +14,7 @@ app.use(express.static(__dirname + "/client/"));
 
 //GET
 app.get("/", async (req, res) => {
-    res.render("pages/index", {Hello: "TJO"});
+    res.render("pages/index");
   });
 
 app.listen(port, () => console.info(`Server listening on port ${port}!\nAccess the site on http://localhost:${port}`))
