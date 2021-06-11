@@ -30,7 +30,7 @@ function countdown(now, absolute) {
             clearInterval(counter);
             return false;
         }
-    }, 1000);
+    }, 100);
 }
 
 function validTime(hour, minute) {
@@ -68,9 +68,10 @@ function calculateTime(msLeft) {
         hours: Math.floor((msLeft / (1000 * 60 * 60)) % 24),
         minutes: Math.floor((msLeft / (1000 * 60)) % 60),
         seconds: Math.floor((msLeft / 1000) % 60),
+        hundredthSecond: Math.floor((msLeft % 1000) / 10)
     };
 }
 
 function displayTime(timeLeft) {
-    console.log(`Hours: ${timeLeft.hours} \nMinutes: ${timeLeft.minutes}\nSeconds: ${timeLeft.seconds}`);
+    console.log(`Hours: ${timeLeft.hours} \nMinutes: ${timeLeft.minutes}\nSeconds: ${timeLeft.seconds}\nHundredth of a second: ${timeLeft.hundredthSecond}`);
 }
