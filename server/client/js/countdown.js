@@ -1,3 +1,10 @@
+var timeLeft = {
+    hours: 0,
+    minutes: 0,
+    seconds: 0,
+    centiSeconds: 0,
+};
+
 function initCountdown() {
     var time = document.getElementById("userTime").value;
     var hour = time.substring(0, 2);
@@ -22,8 +29,8 @@ function initCountdown() {
 function countdown(now, absolute) {
     var counter = setInterval(function () {
         var msLeft = timeDifference(now, absolute); //Time left in milliseconds
-        var timeLeft = calculateTime(msLeft); //Time left in HH:MM:SS
-        displayTime(timeLeft); //Time is displayed
+        timeLeft = calculateTime(msLeft); //Time left in HH:MM:SS
+        requestAnimationFrame(displayTime); //Time is displayed
 
         if (msLeft < 1000) {
             //If the time reaches zero, the counter stops
@@ -68,10 +75,19 @@ function calculateTime(msLeft) {
         hours: Math.floor((msLeft / (1000 * 60 * 60)) % 24),
         minutes: Math.floor((msLeft / (1000 * 60)) % 60),
         seconds: Math.floor((msLeft / 1000) % 60),
-        hundredthSecond: Math.floor((msLeft % 1000) / 10)
+        centiSeconds: Math.floor((msLeft % 1000) / 10),
     };
 }
 
-function displayTime(timeLeft) {
-    console.log(`Hours: ${timeLeft.hours} \nMinutes: ${timeLeft.minutes}\nSeconds: ${timeLeft.seconds}\nHundredth of a second: ${timeLeft.hundredthSecond}`);
+function displayTime() {
+    var hour = document.getElementById("hour")
+    var minute = document.getElementById("minute")
+    var second = document.getElementById("second")
+    var centiSecond = document.getElementById("centiSecond")
+
+    hour.innerText = timeLeft.hours
+    minute.innerText = timeLeft.minutes
+    second.innerText = timeLeft.seconds
+    centiSecond.innerText = timeLeft.centiSeconds
 }
+
