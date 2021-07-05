@@ -89,5 +89,7 @@ function displayTime() {
     minute.innerText = timeLeft.minutes
     second.innerText = timeLeft.seconds
     centiSecond.innerText = timeLeft.centiSeconds
+
+    document.title = `Countdown - ${timeLeft.hours} : ${timeLeft.minutes} : ${timeLeft.seconds}`
 }
 
