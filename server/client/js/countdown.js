@@ -37,7 +37,7 @@ function countdown(now, absolute) {
             clearInterval(counter);
             return false;
         }
-    }, 100);
+    }, 10);
 }
 
 function validTime(hour, minute) {
